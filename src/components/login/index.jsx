@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import google from "../../assets/svgs/google.svg";
 import facebook from "../../assets/svgs/facebook.svg";
 import line from "../../assets/svgs/line.svg";
@@ -31,7 +32,7 @@ const Login = () => {
       placeholder: "Enter your Password",
     },
   ];
-  console.log(details)
+  
   const navigate = useNavigate();
   return (
     <div>

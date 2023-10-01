@@ -113,7 +113,7 @@ const VideoDetails = ({
                   icon={item.icon}
                   title={item.title}
                   outline
-                  onClick={() => console.log("share video!")}
+                  onClick={() => null}
                 />
               </div>
             ))}

@@ -4,45 +4,48 @@ import React, { useEffect } from "react";
 import arrowRight from "../../../assets/svgs/arrow-right.svg";
 import people from "../../../assets/images/people.jpg";
 import { useNavigate } from "react-router-dom";
-import Button from "../../common/Button";
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const captureUserMedia = () => {
     let mediaRecorder;
     let recordedChunks = [];
-
+  
     navigator.mediaDevices
       .getDisplayMedia({ video: true, audio: true })
       .then((stream) => {
         mediaRecorder = new MediaRecorder(stream);
-
+  
         mediaRecorder.ondataavailable = (event) => {
           if (event.data.size > 0) {
-            // console.log("New chunk!");
-            const blob = event.data;
-
-            const fileReader = new FileReader();
-            fileReader.onload = function () {
-              const binaryData = fileReader.result;
-              // console.log("Binary data:", binaryData);
-            };
-            fileReader.readAsBinaryString(blob);
+            recordedChunks.push(event.data); // Push the data chunk into the array
           }
         };
-
+  
         mediaRecorder.onstop = () => {
-          alert("Recording stopped!");
+          alert("Recording stopped!", recordedChunks);
           clearInterval(chunkInterval);
-          navigate('/recording-details/1')
-        };
+  
+          // Create a Blob from the recorded chunks
+          const fullBlob = new Blob(recordedChunks, { type: 'video/webm' });
+  
+          // Now you can use the 'fullBlob' as needed. For example, you can create a download link:
+          // const downloadLink = document.createElement('a');
+          // downloadLink.href = window.URL.createObjectURL(fullBlob);
+          console.log('fullBlob', fullBlob)
 
+          // downloadLink.download = 'recorded-video.webm';
+          // downloadLink.textContent = 'Download recorded video';
+          // document.body.appendChild(downloadLink);
+          // downloadLink.click();
+        };
+  
         mediaRecorder.start();
       })
       .catch((error) => {
         console.error("Error accessing user media:", error);
       });
-
+  
     // Create an interval to push data every second
     const chunkInterval = setInterval(() => {
       if (mediaRecorder && mediaRecorder.state === "recording") {
@@ -50,6 +53,7 @@ const HeroSection = () => {
       }
     }, 1000);
   };
+  
   const startRecordingIfNeeded = () => {
     const recordString = localStorage.getItem("record");
     const recordBoolean = recordString === "true";
@@ -87,7 +91,7 @@ const HeroSection = () => {
           Help your friends and loved ones by creating and sending videos on how
           to get things done on a website.
         </p>
-        <button className="w-full lg:w-fit justify-center bg-primary-dark-blue hover:bg-primary-dark-blue-shade text-white-100 flex gap-3 items-center rounded-[8px] py-3 md:py-5 transition delay-100">
+        <button className="w-full lg:w-fit px-6 justify-center bg-primary-dark-blue  text-white-100 flex gap-3 items-center rounded-[8px] py-3 md:py-5">
           <p>Install HelpMeOut</p>
           <img src={arrowRight} alt="right arrow icon" />
         </button>
