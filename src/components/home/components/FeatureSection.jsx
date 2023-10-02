@@ -5,7 +5,7 @@ import { featureObj } from '../mock/data';
 const FeatureSection = () => {
   
   return (
-    <div className="px-8 md:px-24 bg-white-100 py-20">
+    <div className="px-8 md:px-24 bg-white-100 py-20" id="features">
       <div className="text-center flex flex-col gap-2 mb-16">
         <h3 className="font-bold text-[32px] md:text-[40px] leading-[50.4px]">Features</h3>
         <p className="text-grey-200 text-[18px] md:text-[20px] leading-[30.26px]">

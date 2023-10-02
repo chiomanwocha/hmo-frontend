@@ -6,8 +6,12 @@ import BreadCrumb from "./components/BreadCrumb";
 import VideoTitle from "./components/VideoTitle";
 import Share from "./components/Share";
 import Send from "./components/Send";
+import { useState } from "react";
+import EmailModal from "../recording-details/component/EmailModal";
 
 const FileDetails = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [receiverEmail, setReceiverEmail] = useState("");
   return (
     <div>
       <AuthNavbar />
@@ -18,7 +22,12 @@ const FileDetails = () => {
           <FileContainer img={videoFrame} />
         </div>
         <div className="mt-10 flex flex-col gap-10">
-          <Send />
+          <Send
+            showModal={showModal}
+            setShowModal={setShowModal}
+            receiverEmail={receiverEmail}
+            setReceiverEmail={setReceiverEmail}
+          />
           <Share />
         </div>
         <div className="mt-10 lg:mt-20">
@@ -27,10 +36,13 @@ const FileDetails = () => {
             <option>English</option>
           </select>
           <div className="mt-10">
-          <TranscriptBox />
-        </div>
+            <TranscriptBox />
+          </div>
         </div>
       </div>
+      {showModal ? (
+        <EmailModal setShowModal={setShowModal} receiverEmail={receiverEmail} />
+      ) : null}
     </div>
   );
 };

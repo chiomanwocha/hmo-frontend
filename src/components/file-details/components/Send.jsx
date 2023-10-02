@@ -1,11 +1,8 @@
-import { useState } from "react";
 import Button from "../../common/Button";
 import copy from "../../../assets/svgs/copy.svg";
 import { copyText } from "../../recording-details/component/VideoDetails";
 
-const Send = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [receiverEmail, setReceiverEmail] = useState("");
+const Send = ({ showModal, setShowModal, receiverEmail, setReceiverEmail }) => {
   return (
     <div className="flex gap-2 flex-col lg:flex-row lg:gap-20 ">
       <div className="flex bg-[#B6B3C633] justify-between py-3 px-6 md:gap-8 rounded-[16px] w-full">

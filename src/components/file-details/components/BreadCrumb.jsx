@@ -9,7 +9,7 @@ const BreadCrumb = () => {
       {items.map((item, index) => (
         <span
           key={index}
-          className={`breadcrumb-item ${
+          className={`breadcrumb-item cursor-pointer ${
             index !== items.length - 1
               ? "text-[#141414B2]"
               : "text-primary-light-blue"

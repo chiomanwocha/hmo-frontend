@@ -15,15 +15,14 @@ const Navbar = () => {
           {navLinks.map((item) => (
             <li
               key={item.title}
-              onClick={() => null}
               className="cursor-pointer hover:text-primary-light-blue hover-underline-animation transition duration-100"
             >
-              {item.title}
+              <a href={item.link}>{item.title}</a>
             </li>
           ))}
         </ul>
         <div className="cursor-pointer hidden md:block hover-underline-animation hover:text-primary-light-blue transition duration-100">
-          <p className="text-lg font-semibold hidden md:block">Get Started</p>
+          <p className="text-lg font-semibold hidden md:block" onClick={() => navigate("/login")}>Get Started</p>
         </div>
       </div>
     </div>

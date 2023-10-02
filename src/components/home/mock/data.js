@@ -5,11 +5,11 @@ import revisit from '../../../assets/svgs/revisit.svg';
 export const navLinks = [
   {
     title: 'Features',
-    link: '#',
+    link: '#features',
   },
   {
     title: 'How It Works',
-    link: '#',
+    link: '#how-it-works',
   },
 ];
 

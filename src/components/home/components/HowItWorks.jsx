@@ -4,7 +4,7 @@ import { howItWorks } from '../mock/data';
 
 const HowItWorks = () => {
   return (
-    <div className="px-8 md:px-24 bg-white-100 py-20">
+    <div className="px-8 md:px-24 bg-white-100 py-20" id="how-it-works">
       <div className="text-center mb-8 md:mb-14">
         <h3 className="font-bold text-[32px] md:text-[40px] leading-[50.4px]">How it works</h3>
       </div>
